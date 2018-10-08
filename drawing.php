@@ -19,7 +19,7 @@
 </div>
 
 
-<form action="uploader.php" name="form1" method="POST" enctype="multipart/form-data">
+<form action="upload.php" name="form1" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="imageToUpload" id="imageToUpload">
     <input type="button" onclick="submitImage()" value="Submit image">
 </form>
