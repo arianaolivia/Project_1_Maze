@@ -1,58 +1,120 @@
-var demo = {}, level1, purpleBall;
+var demo = {}, blocks, level1, players, finish;
 
 demo.level1 = function(){};
 demo.level1.prototype = {
 	preload: function(){
-        game.load.image('level1','assets/background/level1Maze.png')
-        game.load.image('purpleBall','assets/sprites/purpleBall.png')
+        game.load.image('block', 'assets/tiletest.png');
+        game.load.image('finish', 'assets/yellowBlock.png');
+        game.load.image('purpleBall','assets/sprites/purpleBall.png');
         
         
     },
 	create: function(){
-
+        
+        // load physics system
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        
+        // set background color 
 		game.stage.backgroundColor = '#26b7ad';
-        game.world.setBounds(0, 0, 600, 600);
-        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        
-        level1 = game.add.sprite(0, 0,'level1');
-        game.physics.enable(level1);
-        level1.body.collideWorldBounds = true;
         
         
+        // create player sprite
+        // two corrdinates for debugging
         
-        purpleBall = game.add.sprite(80, 10,'purpleBall');
-        purpleBall.scale.setTo(.4, .4);
-        game.physics.enable(purpleBall);
-        purpleBall.body.collideWorldBounds = true;
-
-		
+        player = game.add.sprite(0, 13, 'purpleBall');
+        //player = game.add.sprite(535, 557, 'purpleBall');
+        
+        
+        
+        player.scale.setTo(.4, .4);
+        game.physics.arcade.enable(player);
+        player.body.collideWorldBounds = true;
+        player.body.immovable = true;
+        
+        // create block group that creates the walls of the maze
+        blocks = game.add.group();
+        blocks.enableBody = true;
+        
+        
+        // variables defined here are added to the group 
+        // and implemented into the game world to create 
+        // the physical walls/sprites
+        
+        var block = blocks.create(0, 50, 'block');
+        game.physics.arcade.enable(block);
+        block.scale.setTo(1.3, .2);
+        
+        var block = blocks.create(500, 0, 'block');
+        game.physics.arcade.enable(block);
+        block.scale.setTo(1, .7);
+        
+        var block = blocks.create(-200, 50, 'block');
+        game.physics.arcade.enable(block);
+        block.scale.setTo(1, 2);
+        
+        var block = blocks.create(200, 180, 'block');
+        game.physics.arcade.enable(block);
+        block.scale.setTo(1.3, .2);
+        
+        var block = blocks.create(0, 310, 'block');
+        game.physics.arcade.enable(block);
+        block.scale.setTo(1.3, .2);
+        
+        var block = blocks.create(500, 200, 'block');
+        game.physics.arcade.enable(block);
+        block.scale.setTo(1, 1);
+        
+        var block = blocks.create(200, 440, 'block');
+        game.physics.arcade.enable(block);
+        block.scale.setTo(1.3, .33);
+        
+        finish = game.add.sprite(567, 546, 'finish');
+        finish.scale.setTo(.75, 1.09);
+        game.physics.arcade.enable(finish);
+        
+        	
 	},
+    
 	update: function(){
-        
-        game.physics.arcade.collide(purpleBall, level1);
-        
         
         
         if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-			purpleBall.scale.setTo(.4, .4);
-			purpleBall.x += 4;
+			player.scale.setTo(.4, .4);
+			player.x += 4;
 		}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-			purpleBall.scale.setTo(.4, .4);
-			purpleBall.x -= 4;
+			player.scale.setTo(.4, .4);
+			player.x -= 4;
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-            purpleBall.scale.setTo(.4, .4);
-			purpleBall.y -= 4;
+            player.scale.setTo(.4, .4);
+			player.y -= 4;
 			}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
-            purpleBall.scale.setTo(.4, .4);
-			purpleBall.y += 4;
+            player.scale.setTo(.4, .4);
+			player.y += 4;
 		}
         
+        // check if player overlaps with a wall
+        game.physics.arcade.overlap(player, blocks, resetPlayer, null, this);
         
+        game.physics.arcade.overlap(player, finish, nextLevel, null, this);
+        
+        
+        
+        
+        
+        // function that resets the player to the starting position
+        function resetPlayer(player){
+            player.body.x = 0
+            player.body.y = 13
+        }
+        
+        
+        function nextLevel(player, finish){
+            game.state.start('level2');    
+        }
         
     }
 };

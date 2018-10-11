@@ -1,65 +1,123 @@
-demo.state1 = function(){};
-demo.state1.prototype = {
+var level3;
+
+demo.level3 = function(){};
+demo.level3.prototype = {
 	preload: function(){
-		game.load.image('carlos','assets/sprites/carlos.png')
-		game.load.image('water','assets/backgrounds/water.png')
-        game.load.image('purpleBall','assets/sprites/purpleBall.png')
-
-	},
+        game.load.image('tileG', 'assets/greenTile.png');
+        game.load.image('finish', 'assets/yellowBlock.png');
+        game.load.image('purpleBall','assets/sprites/purpleBall.png');
+        
+        
+    },
 	create: function(){
-		game.physics.startSystem(Phaser.Physics.ARCADE)
+        
+        // load physics system
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        
+        // set background color 
 		game.stage.backgroundColor = '#26b7ad';
-		//addChangeStateEventListeners();
-		game.world.setBounds(0, 0, 2813, 1000);
-		game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-
-		var water = game.add.sprite(0, 0,'water');
-
-		carlos = game.add.sprite(centerX, centerY, 'carlos');
-		carlos.anchor.setTo(0.5, 0.5);
-		carlos.scale.setTo(0.9, 0.9);
-		game.physics.enable(carlos);
-		carlos.body.collideWorldBounds = true;
-
-		game.camera.follow(carlos);
-		game.camera.deadzone = new Phaser.Rectangle(centerX - 300, 0, 600, 1000);
         
         
-        purpleBall = game.add.group()
-        purpleBall.enableBody = true;
-        for (var i = 0; i < 7; i++)
-        {
-        purpleBall.create(i * 450, 800, 'purpleBall');
-        }
+        // create player sprite
+        // two corrdinates for debugging
         
-        scoreText = game.add.text(20, 20, 'score: 0', { fontSize: '64px', fill: '#000' });
+        player = game.add.sprite(0, 13, 'purpleBall');
+        //player = game.add.sprite(535, 557, 'purpleBall');
         
-
+        
+        player.scale.setTo(.4, .4);
+        game.physics.arcade.enable(player);
+        player.body.collideWorldBounds = true;
+        
+        // create block group that creates the walls of the maze
+        blocks = game.add.group();
+        blocks.enableBody = true;
+        
+        
+        
+        
+        
+        //Tile design is the same as level2 but green
+        //only a placeholder for now
+        
+        
+        
+        var tileG = blocks.create(0, 50, 'tileG');
+        game.physics.arcade.enable(tileG);
+        tileG.scale.setTo(1.4, .17);
+        
+        var tileG = blocks.create(500, 0, 'tileG');
+        game.physics.arcade.enable(tileG);
+        tileG.scale.setTo(1.9, 0.7);
+        
+        var tileG = blocks.create(-275, 50, 'tileG');
+        game.physics.arcade.enable(tileG);
+        tileG.scale.setTo(1, 2);
+        
+        var tileG = blocks.create(110, 155, 'tileG');
+        game.physics.arcade.enable(tileG);
+        tileG.scale.setTo(1.53, .32);
+        
+        var tileG = blocks.create(555, 255, 'tileG');
+        game.physics.arcade.enable(tileG);
+        tileG.scale.setTo(.3, .7);
+        
+        var tileG = blocks.create(10, 305, 'tileG');
+        game.physics.arcade.enable(tileG);
+        tileG.scale.setTo(1.53, .32);
+        
+        var tileG = blocks.create(110, 455, 'tileG');
+        game.physics.arcade.enable(tileG);
+        tileG.scale.setTo(1.53, .3);
+        
+        
+        finish = game.add.sprite(567, 551, 'finish');
+        finish.scale.setTo(.75, 1.09);
+        game.physics.arcade.enable(finish);
+        
+        	
 	},
-
-
+    
 	update: function(){
-		if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-			carlos.scale.setTo(0.9, 0.9);
-			carlos.x += 4;
+        
+        
+        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+			player.scale.setTo(.4, .4);
+			player.x += 4;
 		}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-			carlos.scale.setTo(-0.9, 0.9);
-			carlos.x -= 4;
+			player.scale.setTo(.4, .4);
+			player.x -= 4;
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-			carlos.y -= 4;
-			if(carlos.y < 395){
-				carlos.y = 395;
+            player.scale.setTo(.4, .4);
+			player.y -= 4;
 			}
-		}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
-			carlos.y += 4;
+            player.scale.setTo(.4, .4);
+			player.y += 4;
 		}
-	   
-        game.physics.arcade.overlap(carlos, purpleBall, collectBall, null, this)
-    
+        
+        // check if player overlaps with a wall
+        
+        game.physics.arcade.overlap(player, blocks, resetPlayer, null, this);
+        
+        game.physics.arcade.overlap(player, finish, nextLevel, null, this);
+        
+        
+        
+        
+        
+        // function that resets the player to the starting position
+        function resetPlayer(player){
+            game.state.start('level1');
+        }
+        
+        
+        function nextLevel(player, finish){
+            game.state.start('scary');    
+        }
+        
     }
-    
 };
