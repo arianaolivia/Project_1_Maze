@@ -5,7 +5,7 @@ demo.level1.prototype = {
 	preload: function(){
         game.load.image('block', 'assets/tiletest.png');
         game.load.image('finish', 'assets/yellowBlock.png');
-        game.load.image('purpleBall','assets/sprites/purpleBall.png');
+        game.load.image('purpleBall','assets/drawing.png');
         
         
     },
