@@ -26,7 +26,7 @@ demo.level1.prototype = {
         
         
         
-        player.scale.setTo(.4, .4);
+        player.scale.setTo(.2, .2);
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         player.body.immovable = true;
@@ -79,20 +79,20 @@ demo.level1.prototype = {
         
         
         if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-			player.scale.setTo(.4, .4);
+			player.scale.setTo(.2, .2);
 			player.x += 4;
 		}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-			player.scale.setTo(.4, .4);
+			player.scale.setTo(.2, .2);
 			player.x -= 4;
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-            player.scale.setTo(.4, .4);
+            player.scale.setTo(.2, .2);
 			player.y -= 4;
 			}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
-            player.scale.setTo(.4, .4);
+            player.scale.setTo(.2, .2);
 			player.y += 4;
 		}
         
