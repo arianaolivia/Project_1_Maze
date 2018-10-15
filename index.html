@@ -13,7 +13,7 @@
 	<body>
 		<script src="main.js"> </script>	
 		
-	    Draw your icon to use in the Maze Game!<br/>
+	    Draw your character to use in the Maze Game! A blank character cannot be used. <br/>
 		<div id="paint">
         <canvas id="myCanvas" width="200" height="200" style="border:1px solid"></canvas>
         </div>
@@ -56,7 +56,9 @@
                 var canvasImage = canvas.toDataURL('image/png');
                 var dataImage = canvasImage.replace('data:image/png;base64,', '');
                 document.getElementById('imageToUpload').value = dataImage;
-                document.forms["form1"].submit();
+                if dataImage !== "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAsUlEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8GXHmAAFMgHIEAAAAAElFTkSuQmCC"{
+                    document.forms["form1"].submit();
+                }
             }
         </script>
 	</body>
