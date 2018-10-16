@@ -76,23 +76,34 @@ demo.level2.prototype = {
 	update: function(){
         
         
+       game.physics.arcade.moveToPointer(player, 400);
+        
+        if (Phaser.Rectangle.contains(player.body, game.input.x, game.input.y))
+            {
+            player.body.velocity.setTo(0, 0);
+            }
+        
+        /*
         if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-			player.scale.setTo(.2, .2);
+			player.scale.setTo(.4, .4);
 			player.x += 4;
 		}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-			player.scale.setTo(.2, .2);
+			player.scale.setTo(.4, .4);
 			player.x -= 4;
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-            player.scale.setTo(.2, .2);
+            player.scale.setTo(.4, .4);
 			player.y -= 4;
 			}
 		else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
-            player.scale.setTo(.2, .2);
+            player.scale.setTo(.4, .4);
 			player.y += 4;
 		}
+        
+        
+        */
         
         // check if player overlaps with a wall
         game.physics.arcade.overlap(player, blocks, resetPlayer, null, this);
