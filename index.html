@@ -111,6 +111,8 @@ Draw your character to use in the Maze Game! A blank character cannot be used. <
         var m = confirm("Want to clear");
         if (m) {
             ctx.clearRect(0, 0, w, h);
+            ctx.lineWidth=9;
+		    ctx.strokeRect(2,5,195,190);
             document.getElementById("canvasimg").style.display = "none";
         }
     }
