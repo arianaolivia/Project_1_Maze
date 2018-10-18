@@ -127,7 +127,8 @@ demo.level3.prototype = {
         
         
         function nextLevel(player, finish){
-            game.state.start('scary');    
+            //game.state.start('scary');
+		location.assign('https://www.cryptococc.us');
         }
         
     }
