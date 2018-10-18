@@ -76,7 +76,7 @@ demo.level2.prototype = {
 	update: function(){
         
         
-       game.physics.arcade.moveToPointer(player, 400);
+       game.physics.arcade.moveToPointer(player, 200, Phaser.Input.activePointer, 100);
         
         if (Phaser.Rectangle.contains(player.body, game.input.x, game.input.y))
             {
