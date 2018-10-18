@@ -2,7 +2,7 @@
 <head>
     <title>The Maze Game</title>
     <script src="phaser/phaser.min.js"> </script>
-    <link rel="stylesheet" href="main.css" >
+    <!--<link rel="stylesheet" href="main.css" -->
     <script src="level1.js"></script>
     <script src="level2.js"></script>
     <script src="level3.js"></script>
@@ -10,19 +10,19 @@
 </head>
 
 <body>
-Draw your character to use in the Maze Game! A blank character cannot be used. <br/>
 
 
 <form action="upload.php" name="form1" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="imageToUpload" id="imageToUpload">
-    <input type="button" onclick="submitImage()" value="Submit image">
+    <input type="button" onclick="submitImage()" value="Submit image" style="position:absolute;top:2.5%;left:1%;">
 </form>
 
 <script src="main.js"> </script>
 
 <body onload="init()">
-<input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:1.8%;left:12%;">
 <canvas id="can" width="200" height="200" style="position:absolute;top:5%;left:1%;border:2px solid;"></canvas>
+    <div style="position:absolute;top:0.5%;left:0.5%;">Draw your character to use in the Maze Game! A blank character cannot be used.</div>
+    <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:2.5%;left:12%;">
 <div style="position:absolute;top:5%;left:25%;">Choose Color</div>
 <div style="position:absolute;top:7%;left:25%;width:15px;height:15px;background:green;" id="green" onclick="color(this)"></div>
 <div style="position:absolute;top:7%;left:27%;width:15px;height:15px;background:blue;" id="blue" onclick="color(this)"></div>
