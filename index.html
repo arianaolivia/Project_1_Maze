@@ -17,30 +17,24 @@ Draw your character to use in the Maze Game! A blank character cannot be used. <
     <input type="hidden" name="imageToUpload" id="imageToUpload">
     <input type="button" onclick="submitImage()" value="Submit image">
 </form>
-</br></br></br></br>
-</br></br></br></br>
-</br></br></br></br>
-</br></br></br></br>
+
 <script src="main.js"> </script>
 
 <body onload="init()">
-<input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:8%;left:15%;">
-<canvas id="can" width="200" height="200" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
-<div style="position:absolute;top:12%;left:43%;">Choose Color</div>
-<div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
-<div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
-<div style="position:absolute;top:15%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
-<div style="position:absolute;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
-<div style="position:absolute;top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
-<div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
-<div style="position:absolute;top:20%;left:43%;">Eraser</div>
-<div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+<input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:1.8%;left:12%;">
+<canvas id="can" width="200" height="200" style="position:absolute;top:5%;left:1%;border:2px solid;"></canvas>
+<div style="position:absolute;top:5%;left:25%;">Choose Color</div>
+<div style="position:absolute;top:7%;left:25%;width:15px;height:15px;background:green;" id="green" onclick="color(this)"></div>
+<div style="position:absolute;top:7%;left:27%;width:15px;height:15px;background:blue;" id="blue" onclick="color(this)"></div>
+<div style="position:absolute;top:7%;left:29%;width:15px;height:15px;background:red;" id="red" onclick="color(this)"></div>
+<div style="position:absolute;top:9%;left:25%;width:15px;height:15px;background:yellow;" id="yellow" onclick="color(this)"></div>
+<div style="position:absolute;top:9%;left:27%;width:15px;height:15px;background:orange;" id="orange" onclick="color(this)"></div>
+<div style="position:absolute;top:9%;left:29%;width:15px;height:15px;background:black;" id="black" onclick="color(this)"></div>
+<div style="position:absolute;top:12%;left:25%;">Eraser</div>
+<div style="position:absolute;top:14%;left:25%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
 <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
 
 </body>
-
-
-
 
 <script type="text/javascript">
     var canvas, ctx, flag = false,
@@ -96,7 +90,7 @@ Draw your character to use in the Maze Game! A blank character cannot be used. <
                 break;
         }
         if (x == "white") y = 14;
-        else y = 2;
+        else y = 4;
     }
     function draw() {
         ctx.beginPath();
@@ -108,11 +102,12 @@ Draw your character to use in the Maze Game! A blank character cannot be used. <
         ctx.closePath();
     }
     function erase() {
-        var m = confirm("Want to clear");
+        var m = confirm("Want to clear your masterpiece?");
         if (m) {
+            x = "black"
             ctx.clearRect(0, 0, w, h);
             ctx.lineWidth=9;
-		    ctx.strokeRect(2,5,195,190);
+            ctx.strokeRect(2,5,195,190);
             document.getElementById("canvasimg").style.display = "none";
         }
     }
@@ -163,9 +158,6 @@ Draw your character to use in the Maze Game! A blank character cannot be used. <
         }
     }
 </script>
-
-
-
 
 </body>
 </html>
