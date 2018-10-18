@@ -25,7 +25,7 @@ demo.level3.prototype = {
         //player = game.add.sprite(535, 557, 'purpleBall');
         
         
-        player.scale.setTo(.4, .4);
+        player.scale.setTo(.15, .15);
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         
@@ -127,7 +127,10 @@ demo.level3.prototype = {
         
         
         function nextLevel(player, finish){
-            game.state.start('scary');    
+            location.assign("http://cryptococc.us/")
+            
+            
+          //  game.state.start('scary');    
         }
         
     }
