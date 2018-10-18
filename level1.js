@@ -26,7 +26,7 @@ demo.level1.prototype = {
         
         
         
-        player.scale.setTo(.2, .2);
+        player.scale.setTo(.15, .15);
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         player.body.immovable = true;
