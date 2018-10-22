@@ -33,7 +33,9 @@
     <div style="position:relative;left:25%;">Eraser</div>
     <div style="position:relative;left:25%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
     <img id="canvasimg" style="position:relative;left:52%;" style="display:none;">
-    </br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+    </br></br></br></br></br></br></br></br>
+    To start, move your cursor and stay on the path. If you don't you will be redirected to the beginning of the game.
+    </br>
 </body>
 
 <script type="text/javascript">
@@ -107,6 +109,7 @@
             x = "black"
             ctx.clearRect(0, 0, w, h);
             ctx.lineWidth=9;
+            ctx.strokeStyle=x;
             ctx.strokeRect(2,5,195,190);
             document.getElementById("canvasimg").style.display = "none";
         }
