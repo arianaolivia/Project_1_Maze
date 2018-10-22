@@ -5,7 +5,7 @@ demo.level3.prototype = {
 	preload: function(){
         game.load.image('tileG', 'assets/greenTile.png');
         game.load.image('finish', 'assets/yellowBlock.png');
-        game.load.image('purpleBall','assets/sprites/purpleBall.png');
+        game.load.image('purpleBall','assets/drawing.png');
         
         
     },
@@ -25,7 +25,7 @@ demo.level3.prototype = {
         //player = game.add.sprite(535, 557, 'purpleBall');
         
         
-        player.scale.setTo(.4, .4);
+        player.scale.setTo(.15, .15);
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         
