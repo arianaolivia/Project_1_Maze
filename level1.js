@@ -1,78 +1,76 @@
-var demo = {}, blocks, level1, players, finish;
+var level2;
 
-demo.level1 = function(){};
-demo.level1.prototype = {
+demo.level2 = function(){};
+demo.level2.prototype = {
 	preload: function(){
-        game.load.image('block', 'assets/tiletest.png');
+        game.load.image('tileR', 'assets/redTile.png');
         game.load.image('finish', 'assets/yellowBlock.png');
         game.load.image('purpleBall','assets/drawing.png');
         
         
     },
 	create: function(){
-        
         // load physics system
         game.physics.startSystem(Phaser.Physics.ARCADE);
         
-        // set background color 
+        // set background color
 		game.stage.backgroundColor = '#26b7ad';
         
         
         // create player sprite
         // two corrdinates for debugging
         
-        player = game.add.sprite(0, 13, 'purpleBall');
-        //player = game.add.sprite(535, 557, 'purpleBall');
-        
+        //player = game.add.sprite(50, 20, 'purpleBall');
+        player = game.add.sprite(555, 565, 'purpleBall');
         
         
         player.scale.setTo(.15, .15);
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
-        player.body.immovable = true;
         
         // create block group that creates the walls of the maze
         blocks = game.add.group();
         blocks.enableBody = true;
-        
-        
+           
         // variables defined here are added to the group 
         // and implemented into the game world to create 
         // the physical walls/sprites
+       
+        var tileR = blocks.create(0, 50, 'tileR');
+        game.physics.arcade.enable(tileR);
+        tileR.scale.setTo(1.4, .17);
         
-        var block = blocks.create(0, 80, 'block');
-        game.physics.arcade.enable(block);
-        block.scale.setTo(1.1, .1);
+        var tileR = blocks.create(500, 0, 'tileR');
+        game.physics.arcade.enable(tileR);
+        tileR.scale.setTo(1.9, 0.7);
         
-        var block = blocks.create(500, 0, 'block');
-        game.physics.arcade.enable(block);
-        block.scale.setTo(1, .7);
+        var tileR = blocks.create(-275, 50, 'tileR');
+        game.physics.arcade.enable(tileR);
+        tileR.scale.setTo(1, 2);
         
-        var block = blocks.create(-200, 80, 'block');
-        game.physics.arcade.enable(block);
-        block.scale.setTo(1, 2);
+        var tileR = blocks.create(110, 155, 'tileR');
+        game.physics.arcade.enable(tileR);
+        tileR.scale.setTo(1.53, .32);
         
-        var block = blocks.create(250, 200, 'block');
-        game.physics.arcade.enable(block);
-        block.scale.setTo(1, .1);
+        var tileR = blocks.create(555, 255, 'tileR');
+        game.physics.arcade.enable(tileR);
+        tileR.scale.setTo(.3, .7);
         
-        var block = blocks.create(0, 310, 'block');
-        game.physics.arcade.enable(block);
-        block.scale.setTo(1.1, .1);
+        var tileR = blocks.create(10, 305, 'tileR');
+        game.physics.arcade.enable(tileR);
+        tileR.scale.setTo(1.53, .32);
         
-        var block = blocks.create(500, 200, 'block');
-        game.physics.arcade.enable(block);
-        block.scale.setTo(1, 1);
+        var tileR = blocks.create(110, 455, 'tileR');
+        game.physics.arcade.enable(tileR);
+        tileR.scale.setTo(1.53, .3);
         
-        var block = blocks.create(250, 440, 'block');
-        game.physics.arcade.enable(block);
-        block.scale.setTo(1.1, .33);
         
-        finish = game.add.sprite(567, 546, 'finish');
-        finish.scale.setTo(.75, 1.09);
+        finish = game.add.sprite(0, 0, 'finish');
+        finish.scale.setTo(0.7, 1);
         game.physics.arcade.enable(finish);
         
-        	
+        
+
 	},
     
 	update: function(){
@@ -94,7 +92,6 @@ demo.level1.prototype = {
 			player.scale.setTo(.4, .4);
 			player.x -= 4;
 		}
-
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
             player.scale.setTo(.4, .4);
 			player.y -= 4;
@@ -113,18 +110,13 @@ demo.level1.prototype = {
         game.physics.arcade.overlap(player, finish, nextLevel, null, this);
         
         
-        
-        
-        
         // function that resets the player to the starting position
         function resetPlayer(player){
-            player.body.x = 0
-            player.body.y = 13
+            game.state.start('level1');   
         }
         
-        
-        function nextLevel(player, finish){
-            game.state.start('level2');    
+         function nextLevel(player, finish){
+            game.state.start('level3');    
         }
         
     }
