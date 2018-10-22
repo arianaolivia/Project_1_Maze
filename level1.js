@@ -66,7 +66,7 @@ demo.level1.prototype = {
         
         var block = blocks.create(250, 440, 'block');
         game.physics.arcade.enable(block);
-        block.scale.setTo(1.1, .25);
+        block.scale.setTo(1.1, .33);
         
         finish = game.add.sprite(567, 546, 'finish');
         finish.scale.setTo(.75, 1.09);
