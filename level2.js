@@ -24,7 +24,7 @@ demo.level2.prototype = {
         player = game.add.sprite(555, 565, 'purpleBall');
         
         
-        player.scale.setTo(.2, .2);
+        player.scale.setTo(.15, .15);
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         
@@ -92,7 +92,6 @@ demo.level2.prototype = {
 			player.scale.setTo(.4, .4);
 			player.x -= 4;
 		}
-
 		if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
             player.scale.setTo(.4, .4);
 			player.y -= 4;
