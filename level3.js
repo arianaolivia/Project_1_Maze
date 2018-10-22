@@ -25,7 +25,7 @@ demo.level3.prototype = {
         //player = game.add.sprite(535, 557, 'purpleBall');
         
         
-        player.scale.setTo(.05, .05);
+        player.scale.setTo(.15, .15);
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         
@@ -42,7 +42,7 @@ demo.level3.prototype = {
         
         
         
-        /**var tileG = blocks.create(0, 50, 'tileG');
+        var tileG = blocks.create(0, 50, 'tileG');
         game.physics.arcade.enable(tileG);
         tileG.scale.setTo(1.4, .17);
         
@@ -68,7 +68,7 @@ demo.level3.prototype = {
         
         var tileG = blocks.create(110, 455, 'tileG');
         game.physics.arcade.enable(tileG);
-        tileG.scale.setTo(1.53, .3);*/
+        tileG.scale.setTo(1.53, .3);
         
         
         finish = game.add.sprite(567, 551, 'finish');
